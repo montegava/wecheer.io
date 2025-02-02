@@ -56,7 +56,7 @@ cd <repository-name>
 
 2. Backend setup:
 ```bash
-cd src/ImageProcessor
+cd src/wecheer.api
 dotnet restore
 dotnet build
 ```

@@ -8,8 +8,9 @@ export interface ImageEvent {
   receivedTime: Date;
 }
 
-interface CountResponse {
+export interface StatResponse {
   count: number;
+  latestImage: ImageEvent;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -19,24 +20,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getLatestImageEvent(): Observable<ImageEvent> {
+  getStats(): Observable<StatResponse> {
     return interval(5000).pipe(
       switchMap(() =>
-        this.http.get<ImageEvent>(`${this.apiUrl}/api/images/latest`)
+        this.http.get<StatResponse>(`${this.apiUrl}/api/images/stats`)
       ),
-      catchError((error) => {
-        console.error('Error fetching latest image:', error);
-        return [];
-      })
-    );
-  }
-
-  getHourlyCount(): Observable<number> {
-    return interval(5000).pipe(
-      switchMap(() =>
-        this.http.get<CountResponse>(`${this.apiUrl}/api/images/count`)
-      ),
-      map((response) => response.count),
       catchError((error) => {
         console.error('Error fetching count:', error);
         return [];

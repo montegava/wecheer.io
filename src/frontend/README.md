@@ -1,59 +1,82 @@
-# Frontend
+# Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+A real-time dashboard that displays the latest image events and their statistics, powered by Angular and AWS serverless services.
 
-## Development server
+![Dashboard Preview](screenshot.png) <!-- Add a screenshot if available -->
 
-To start a local development server, run:
+## Features
+
+- 🕒 Auto-refreshes data every 5 seconds
+- 🖼️ Displays latest image with description and timestamp
+- 📊 Shows event count from the last hour
+- 🚦 Error handling and loading states
+- 📱 Responsive design with Angular Material
+- ☁️ Integrates with AWS API Gateway and Lambda
+
+## Prerequisites
+
+- Node.js v18+ [Download](https://nodejs.org/)
+- npm v9+ or yarn
+- Angular CLI v17+
+- AWS account with API Gateway endpoint
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone 'repo'
+cd 'repo'
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Configuration:
+
+Set your API Gateway endpoint in environment.ts :
+
+```
+export const environment = {
+  production: false,
+  apiUrl: 'https://your-api-id.execute-api.region.amazonaws.com/Dev'
+};
+```
+
+4. Running Locally:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Deployment to AWS
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Build production bundle:
 
 ```bash
-ng generate component component-name
+ng build --configuration production
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. Deploy to S3:
 
 ```bash
-ng generate --help
+aws s3 sync dist/image-ui s3://your-bucket-name --delete
 ```
 
-## Building
+## Project Structure
 
-To build the project run:
-
-```bash
-ng build
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+src/app/
+├── dashboard/ # Main dashboard component
+│ ├── dashboard.component.ts
+│ ├── dashboard.component.html
+│ └── dashboard.component.scss
+├── services/
+│ └── api.service.ts # API communication service
+├── environments/ # Environment configurations
+├── assets/ # Static assets
+└── app.component.ts # Root component
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

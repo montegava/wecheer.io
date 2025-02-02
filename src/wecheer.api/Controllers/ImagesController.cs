@@ -57,4 +57,19 @@ public class ImagesController : ControllerBase
     {
         return Ok(new ImageCountDto { Count = _storageService.GetLastHourCount() });
     }
+
+    /// <summary>
+    /// Get statistics about the images received
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("api/images/stats")]
+    [ProducesResponseType(typeof(ImageStatDto), StatusCodes.Status200OK)]
+    public IActionResult GetStats()
+    {
+        return Ok(new ImageStatDto
+        {
+            Count = _storageService.GetLastHourCount(),
+            LatestImage = _storageService.GetLastImage()?.ToDto()
+        });
+    }
 }
