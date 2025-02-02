@@ -4,6 +4,18 @@ namespace Wecheer.Core.Services;
 
 public static class StorageService
 {
-    public static List<CreateImageDto> Events = new List<CreateImageDto>();
-    public static CreateImageDto LastDto => Events.LastOrDefault();
+    private static List<ImageEntity> Events = new List<ImageEntity>();
+
+    public static void AddImage(ImageEntity entity)
+    {
+        Events.Add(entity);
+    }
+
+    public static ImageEntity GetLastImage() => Events.LastOrDefault();
+
+    public static long GetLastHourCount()
+    {
+        var lastHour = DateTime.UtcNow.AddHours(-1);
+        return Events.LongCount(e => e.ReceivedTime >= lastHour);
+    }
 }

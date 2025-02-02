@@ -126,8 +126,8 @@ https://<your-api-gateway-url>/swagger
 
 ## Live Demo
 
-- API Gateway URL: [Your API Gateway URL]
-- Frontend URL: [Your Frontend URL]
+- API Gateway URL: https://oxsbprqxw4.execute-api.eu-north-1.amazonaws.com/Prod/index.html
+- Frontend URL: http://wecheer.frontend.s3-website.eu-north-1.amazonaws.com/index.html
 
 ## Contributing
 

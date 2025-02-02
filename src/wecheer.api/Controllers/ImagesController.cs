@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Wecheer.Core.Mappers;
 using Wecheer.Core.Models;
 using Wecheer.Core.Services;
 
@@ -9,29 +10,44 @@ public class ImagesController : ControllerBase
     /// <summary>
     /// Add new image to the system
     /// </summary>
-    /// <param name="createImageDto"></param>
+    /// <param name="imageDto"></param>
     /// <returns></returns>
     [HttpPost("api/images")]
-    [ProducesResponseType( StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult Post([FromBody] CreateImageDto createImageDto)
+    public IActionResult Post([FromBody] CreateImageDto imageDto)
     {
-        createImageDto.ReceivedTime = DateTime.UtcNow;
-        StorageService.Events.Add(createImageDto);
-        return Ok();
+        StorageService.AddImage(imageDto.ToEntity());
+        return Created();
     }
 
+    /// <summary>
+    /// Get the latest image received
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("api/images/latest")]
+    [ProducesResponseType(typeof(ImageDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetLatest()
     {
-        return Ok(StorageService.LastDto);
+        var image = StorageService.GetLastImage();
+
+        if (image == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(image.ToDto());
     }
 
+    /// <summary>
+    /// Get how many events have been received in the last hour
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("api/images/count")]
+    [ProducesResponseType(typeof(ImageCountDto), StatusCodes.Status200OK)]
     public IActionResult GetCount()
     {
-        var oneHourAgo = DateTime.UtcNow.AddHours(-1);
-        var count = StorageService.Events.Count(e => e.ReceivedTime >= oneHourAgo);
-        return Ok(new { Count = count });
+        return Ok(new ImageCountDto { Count = StorageService.GetLastHourCount() });
     }
 }
