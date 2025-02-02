@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wecheer.Api", "src\wecheer.api\Wecheer.Api.csproj", "{8AAFDCFD-DADF-49C0-8033-08D677532642}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wecheer.Core", "src\wecheer.core\Wecheer.Core.csproj", "{94C6022B-D74A-4D3D-9B23-A7C2A0F6B6FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8AAFDCFD-DADF-49C0-8033-08D677532642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AAFDCFD-DADF-49C0-8033-08D677532642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AAFDCFD-DADF-49C0-8033-08D677532642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C6022B-D74A-4D3D-9B23-A7C2A0F6B6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C6022B-D74A-4D3D-9B23-A7C2A0F6B6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C6022B-D74A-4D3D-9B23-A7C2A0F6B6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C6022B-D74A-4D3D-9B23-A7C2A0F6B6FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
