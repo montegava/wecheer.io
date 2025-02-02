@@ -119,7 +119,7 @@ https://<your-api-gateway-url>/swagger
 │   ├── wecheer.api/          # .NET 8 api hosted as Lambda function
 │   ├── wecheer.core/         # .NET 8 core library as application layer
 │   ├── wecheer.stream/       # .NET 8 Kinesis consumer hosted as Lambda function
-│   ├── frontend/             # Angular frontend application
+│   ├── wecheer.ui/           # Angular frontend application
 │   └── Infrastructure/       # CloudFormation templates
 ├── tests/                    # Test projects
 └── README.md
