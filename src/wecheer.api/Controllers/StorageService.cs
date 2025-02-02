@@ -1,4 +1,4 @@
-﻿namespace MyServerlessApi.Controllers;
+﻿namespace Wecheer.Api.Controllers;
 
 public static class StorageService
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MyServerlessApi.Controllers;
+namespace Wecheer.Api.Controllers;
 
 public class ValuesController : ControllerBase
 {

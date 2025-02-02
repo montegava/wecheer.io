@@ -1,13 +1,13 @@
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
-namespace MyServerlessApi;
+namespace Wecheer.Api;
 
 /// <summary>
 /// This class extends from APIGatewayProxyFunction which contains the method FunctionHandlerAsync which is the 
 /// actual Lambda function entry point. The Lambda handler field should be set to
 /// 
-/// MyServerlessApi::MyServerlessApi.LambdaEntryPoint::FunctionHandlerAsync
+/// Wecheer.Api::Wecheer.Api.LambdaEntryPoint::FunctionHandlerAsync
 /// </summary>
 public class LambdaEntryPoint :
 
@@ -44,10 +44,5 @@ public class LambdaEntryPoint :
     /// <param name="builder">The IHostBuilder to configure.</param>
     protected override void Init(IHostBuilder builder)
     {
-    }
-
-    public override Task<APIGatewayProxyResponse> FunctionHandlerAsync(APIGatewayProxyRequest request, ILambdaContext lambdaContext)
-    {
-        return base.FunctionHandlerAsync(request, lambdaContext);
     }
 }

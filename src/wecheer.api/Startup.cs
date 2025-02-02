@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace MyServerlessApi;
+namespace Wecheer.Api;
 
 public class Startup
 {
@@ -50,7 +50,7 @@ public class Startup
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Serverless API v1");
+            c.SwaggerEndpoint("/Prod/swagger/v1/swagger.json", "My Serverless API v1");
             c.RoutePrefix = ""; // Makes Swagger the default page
         });
 

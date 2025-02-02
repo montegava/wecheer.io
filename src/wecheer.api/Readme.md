@@ -58,12 +58,12 @@ If already installed check if new version is available.
 
 Execute unit tests
 ```
-    cd "MyServerlessApi/test/MyServerlessApi.Tests"
+    cd "Wecheer.Api/test/Wecheer.Api.Tests"
     dotnet test
 ```
 
 Deploy application
 ```
-    cd "MyServerlessApi/src/MyServerlessApi"
+    cd "Wecheer.Api/src/Wecheer.Api"
     dotnet lambda deploy-serverless
 ```
