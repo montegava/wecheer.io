@@ -1,6 +1,7 @@
 ﻿using FluentValidation.AspNetCore;
 using Microsoft.OpenApi.Models;
 using Wecheer.Api.Filters;
+using Wecheer.Api.Registration;
 
 namespace Wecheer.Api;
 
@@ -17,16 +18,18 @@ public class Startup
     {
         services.AddControllers(options => options.Filters.Add<ValidateModelStateFilter>(int.MinValue));
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo
+        services
+            .AddSwaggerGen(c =>
             {
-                Title = "Image API",
-                Version = "v1",
-                Description = "An example serverless API with Swagger in .NET 8",
-            });
-        });
-        services.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Image API",
+                    Version = "v1",
+                    Description = "An example serverless API with Swagger in .NET 8",
+                });
+            })
+            .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>())
+            .AddServices();
 
         services.AddCors(options =>
         {
@@ -49,7 +52,7 @@ public class Startup
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
-            c.SwaggerEndpoint("/Prod/swagger/v1/swagger.json", "My Serverless API v1");
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Serverless API v1");
             c.RoutePrefix = "";
         });
 

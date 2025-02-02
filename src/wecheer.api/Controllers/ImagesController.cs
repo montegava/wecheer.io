@@ -7,6 +7,13 @@ namespace Wecheer.Api.Controllers;
 
 public class ImagesController : ControllerBase
 {
+    private readonly IStorageService _storageService;
+
+    public ImagesController(IStorageService storageService)
+    {
+        _storageService = storageService;
+    }
+
     /// <summary>
     /// Add new image to the system
     /// </summary>
@@ -17,7 +24,7 @@ public class ImagesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Post([FromBody] CreateImageDto imageDto)
     {
-        StorageService.AddImage(imageDto.ToEntity());
+        _storageService.AddImage(imageDto.ToEntity());
         return Created();
     }
 
@@ -30,7 +37,7 @@ public class ImagesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetLatest()
     {
-        var image = StorageService.GetLastImage();
+        var image = _storageService.GetLastImage();
 
         if (image == null)
         {
@@ -48,6 +55,6 @@ public class ImagesController : ControllerBase
     [ProducesResponseType(typeof(ImageCountDto), StatusCodes.Status200OK)]
     public IActionResult GetCount()
     {
-        return Ok(new ImageCountDto { Count = StorageService.GetLastHourCount() });
+        return Ok(new ImageCountDto { Count = _storageService.GetLastHourCount() });
     }
 }

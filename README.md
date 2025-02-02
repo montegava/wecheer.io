@@ -21,7 +21,7 @@ A serverless application built with .NET 8 Lambda and Angular that processes and
 - Exposes REST API endpoints:
   - POST `/api/images` - Submit new image events
   - GET `/api/images/latest` - Retrieve latest image
-  - GET `/api/images/stats` - Retrieve statistics for the last 1h
+  - GET `/api/images/count` - Retrieve statistics for the last 1h
 - Swagger UI documentation available
 
 ### Frontend (Angular)

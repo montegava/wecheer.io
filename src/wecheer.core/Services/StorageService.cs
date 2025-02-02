@@ -1,19 +1,20 @@
-﻿using Wecheer.Core.Models;
+﻿using System.Collections.Concurrent;
+using Wecheer.Core.Models;
 
 namespace Wecheer.Core.Services;
 
-public static class StorageService
+public class StorageService : IStorageService
 {
-    private static List<ImageEntity> Events = new List<ImageEntity>();
+    private static readonly ConcurrentQueue<ImageEntity> Events = new();
 
-    public static void AddImage(ImageEntity entity)
+    public void AddImage(ImageEntity entity)
     {
-        Events.Add(entity);
+        Events.Enqueue(entity);
     }
 
-    public static ImageEntity GetLastImage() => Events.LastOrDefault();
+    public ImageEntity GetLastImage() => Events.LastOrDefault();
 
-    public static long GetLastHourCount()
+    public long GetLastHourCount()
     {
         var lastHour = DateTime.UtcNow.AddHours(-1);
         return Events.LongCount(e => e.ReceivedTime >= lastHour);
