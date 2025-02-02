@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [DashboardComponent, MatToolbarModule],
   template: `
     <mat-toolbar color="primary">
-      <span>Image Event Dashboard</span>
+      <span>Dashboard</span>
     </mat-toolbar>
     <main>
       <app-dashboard></app-dashboard>

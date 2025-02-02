@@ -21,20 +21,16 @@ export class DashboardComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.getLatestImageEvent().subscribe({
+    this.apiService.getStats().subscribe({
       next: (event) => {
-        this.latestEvent = event;
+        this.latestEvent = event.latestImage;
+        this.eventCount = event.count;
         this.isLoading = false;
       },
       error: (err) => {
         this.error = 'Failed to load image data';
         this.isLoading = false;
       },
-    });
-
-    this.apiService.getHourlyCount().subscribe({
-      next: (count) => (this.eventCount = count),
-      error: (err) => (this.error = 'Failed to load event count'),
     });
   }
 }

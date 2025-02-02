@@ -26,4 +26,16 @@
     background-color: #f5f5f5;
     margin-top: 20px;
   }
+
+  .mat-mdc-card-title {
+    color: green;
+    font-size: xx-large;
+  }
+
+  .mat-mdc-card-content {
+    color: red;
+    p {
+      color: white;
+    }
+  }
 }

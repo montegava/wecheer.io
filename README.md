@@ -21,7 +21,7 @@ A serverless application built with .NET 8 Lambda and Angular that processes and
 - Exposes REST API endpoints:
   - POST `/api/images` - Submit new image events
   - GET `/api/images/latest` - Retrieve latest image
-  - GET `/api/images/stats` - Retrieve statistics for the last 1h
+  - GET `/api/images/count` - Retrieve statistics for the last 1h
 - Swagger UI documentation available
 
 ### Frontend (Angular)
@@ -56,7 +56,7 @@ cd <repository-name>
 
 2. Backend setup:
 ```bash
-cd src/ImageProcessor
+cd src/wecheer.api
 dotnet restore
 dotnet build
 ```
@@ -117,6 +117,7 @@ https://<your-api-gateway-url>/swagger
 ```
 ├── src/
 │   ├── wecheer.api/          # .NET 8 api hosted as Lambda function
+│   ├── wecheer.core/         # .NET 8 core library as application layer
 │   ├── wecheer.stream/       # .NET 8 Kinesis consumer hosted as Lambda function
 │   ├── frontend/             # Angular frontend application
 │   └── Infrastructure/       # CloudFormation templates
@@ -126,8 +127,8 @@ https://<your-api-gateway-url>/swagger
 
 ## Live Demo
 
-- API Gateway URL: [Your API Gateway URL]
-- Frontend URL: [Your Frontend URL]
+- API Gateway URL: https://oxsbprqxw4.execute-api.eu-north-1.amazonaws.com/Prod/index.html
+- Frontend URL: http://wecheer.frontend.s3-website.eu-north-1.amazonaws.com/index.html
 
 ## Contributing
 

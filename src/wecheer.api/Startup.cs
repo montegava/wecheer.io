@@ -1,4 +1,7 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.OpenApi.Models;
+using Wecheer.Api.Filters;
+using Wecheer.Api.Registration;
 
 namespace Wecheer.Api;
 
@@ -11,22 +14,22 @@ public class Startup
 
     public IConfiguration Configuration { get; }
 
-    // This method gets called by the runtime. Use this method to add services to the container
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers();
+        services.AddControllers(options => options.Filters.Add<ValidateModelStateFilter>(int.MinValue));
         services.AddEndpointsApiExplorer();
-
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo
+        services
+            .AddSwaggerGen(c =>
             {
-                Title = "My Serverless API",
-                Version = "v1",
-                Description = "An example serverless API with Swagger in .NET 8",
-            });
-        });
-
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Image API",
+                    Version = "v1",
+                    Description = "An example serverless API with Swagger in .NET 8",
+                });
+            })
+            .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>())
+            .AddServices();
 
         services.AddCors(options =>
         {
@@ -39,7 +42,6 @@ public class Startup
         });
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         if (env.IsDevelopment())
@@ -51,7 +53,7 @@ public class Startup
         app.UseSwaggerUI(c =>
         {
             c.SwaggerEndpoint("/Prod/swagger/v1/swagger.json", "My Serverless API v1");
-            c.RoutePrefix = ""; // Makes Swagger the default page
+            c.RoutePrefix = "";
         });
 
         app.UseHttpsRedirection();

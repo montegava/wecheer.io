@@ -14,8 +14,8 @@
     </mat-card>
   </div>
 
-  <div *ngIf="latestEvent && !isLoading && !error">
-    <mat-card class="image-card">
+  <div>
+    <mat-card class="image-card" *ngIf="latestEvent && !isLoading && !error">
       <mat-card-header>
         <mat-card-title>Latest Image</mat-card-title>
         <mat-card-subtitle>
@@ -28,13 +28,14 @@
         alt="Latest received image"
       />
       <mat-card-content>
+        <strong>Description:</strong>
         <p>{{ latestEvent.description }}</p>
       </mat-card-content>
     </mat-card>
 
     <mat-card class="count-card">
       <mat-card-content>
-        <h2>Events in the last hour: {{ eventCount }}</h2>
+        <strong>Events in the last hour:</strong> {{ eventCount }}
       </mat-card-content>
     </mat-card>
   </div>
