@@ -20,7 +20,8 @@ A serverless application built with .NET 8 Lambda and Angular that processes and
 - Maintains in-memory event tracking
 - Exposes REST API endpoints:
   - POST `/api/images` - Submit new image events
-  - GET `/api/stats` - Retrieve latest image and statistics
+  - GET `/api/images/latest` - Retrieve latest image
+  - GET `/api/images/stats` - Retrieve statistics for the last 1h
 - Swagger UI documentation available
 
 ### Frontend (Angular)
@@ -115,8 +116,9 @@ https://<your-api-gateway-url>/swagger
 
 ```
 ├── src/
-│   ├── ImageProcessor/        # .NET 8 Lambda function
-│   ├── Frontend/             # Angular frontend application
+│   ├── wecheer.api/          # .NET 8 api hosted as Lambda function
+│   ├── wecheer.stream/       # .NET 8 Kinesis consumer hosted as Lambda function
+│   ├── frontend/             # Angular frontend application
 │   └── Infrastructure/       # CloudFormation templates
 ├── tests/                    # Test projects
 └── README.md
